@@ -98,8 +98,10 @@ begin
   create policy ta_activity_insert on public.ta_activity_logs for insert with check (auth.uid() = user_id);
 
   drop policy if exists ta_notifications_select on public.ta_notifications;
+  drop policy if exists ta_notifications_insert on public.ta_notifications;
   drop policy if exists ta_notifications_update on public.ta_notifications;
   create policy ta_notifications_select on public.ta_notifications for select using (auth.uid() = user_id);
+  create policy ta_notifications_insert on public.ta_notifications for insert with check (auth.uid() = user_id);
   create policy ta_notifications_update on public.ta_notifications for update using (auth.uid() = user_id) with check (auth.uid() = user_id);
 
   drop policy if exists ta_subscriptions_select on public.ta_subscriptions;
